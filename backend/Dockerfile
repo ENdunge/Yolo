@@ -7,6 +7,7 @@ COPY package.json package-lock.json ./
 RUN npm install
 # Copying all the files in our project
 COPY . .
-# Copying all the files in our project
+# Export port
 EXPOSE 5000
+# Run backend application
 CMD npm start
