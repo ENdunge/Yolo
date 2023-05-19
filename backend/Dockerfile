@@ -5,6 +5,7 @@ WORKDIR /app
 # Installing dependencies
 COPY package.json package-lock.json ./
 RUN npm install
+# Copying all the files in our project
 COPY . .
 EXPOSE 5000
 CMD npm start
