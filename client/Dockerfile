@@ -1,24 +1,25 @@
-# Fetching the latest node image on apline linux
-FROM node:alpine AS builder
-
-# Declaring env
-ENV NODE_ENV production
-
-# Setting up the work directory
-WORKDIR /app
-
-# Installing dependencies
-COPY ./package.json ./
-RUN npm install
-
-# Copying all the files in project
-COPY . ./
+FROM node:15.4 as build 
 
 
-# Building our application
-RUN npm run build
+WORKDIR /react-app
 
-# Fetching the latest nginx image
-EXPOSE 3000
 
-CMD ["start"]
+COPY package*.json .
+
+
+RUN yarn install
+
+
+COPY . .
+
+
+RUN yarn run build
+
+
+FROM nginx:1.19
+
+
+COPY ./nginx.conf /etc/nginx/nginx.conf
+
+
+COPY --from=build /react-app/build /usr/share/nginx/html
