@@ -12,7 +12,7 @@ COPY ./package.json ./
 RUN npm install
 
 # Copying all the files in project
-COPY . .
+COPY . ./
 
 
 # Building our application
