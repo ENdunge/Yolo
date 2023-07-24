@@ -21,5 +21,4 @@ RUN npm run build
 # Fetching the latest nginx image
 EXPOSE 3000
 
-ENTRYPOINT ["/bin/bash", "/app/run.sh"]
 CMD ["start"]
